@@ -3,7 +3,7 @@
 
  The API has two main endpoints:
 1. Return basic Pokemon information.
-2. Return basic Pokemon information but with a â€˜funâ€™ translation of the Pokemon description.
+2. Return basic Pokemon information but with a ‘fun’ translation of the Pokemon description.
 
 <br />
 
@@ -11,7 +11,7 @@
 
 | Name   | URL   |
 | ------ | ------ |
-|PokÃ©API | https://pokeapi.co/ |
+|PokéAPI | https://pokeapi.co/ |
 |Shakespeare translator | https://funtranslations.com/api/shakespeare |
 |Yoda translator | https://funtranslations.com/api/yoda |
 
