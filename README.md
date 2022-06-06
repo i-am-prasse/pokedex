@@ -3,7 +3,7 @@
 
  The API has two main endpoints:
 1. Return basic Pokemon information.
-2. Return basic Pokemon information but with a �fun� translation of the Pokemon description.
+2. Return basic Pokemon information but with a fun translation of the Pokemon description.
 
 <br />
 
@@ -11,7 +11,7 @@
 
 | Name   | URL   |
 | ------ | ------ |
-|Pok�API | https://pokeapi.co/ |
+|PokeAPI | https://pokeapi.co/ |
 |Shakespeare translator | https://funtranslations.com/api/shakespeare |
 |Yoda translator | https://funtranslations.com/api/yoda |
 
@@ -109,7 +109,7 @@ docker build --no-cache -t pokedex -f src\Pokedex.Api/Dockerfile
 
 # Things to consider for Production
 
-Better test coverage
+Better test coverage (more scenarios)
 
 API Versioning
 
