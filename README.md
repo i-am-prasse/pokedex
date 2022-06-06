@@ -3,7 +3,7 @@
 
  The API has two main endpoints:
 1. Return basic Pokemon information.
-2. Return basic Pokemon information but with a ‘fun’ translation of the Pokemon description.
+2. Return basic Pokemon information but with a ï¿½funï¿½ translation of the Pokemon description.
 
 <br />
 
@@ -11,7 +11,7 @@
 
 | Name   | URL   |
 | ------ | ------ |
-|PokéAPI | https://pokeapi.co/ |
+|Pokï¿½API | https://pokeapi.co/ |
 |Shakespeare translator | https://funtranslations.com/api/shakespeare |
 |Yoda translator | https://funtranslations.com/api/yoda |
 
@@ -33,32 +33,55 @@ docker build -t pokedex -f src\Pokedex.Api/Dockerfile .
 ```
 
 ```sh
-docker run -d -p 8080:80 --name pokedex pokedex
+docker run -d -p 8080:80 --name pokedex -e ASPNETCORE_ENVIRONMENT=Development pokedex
 ```
 Navigate to http://localhost:8080/swagger/index.html
 
 <br />
 
-# Unit Tests & Code Coverage
-This project contains UnitTests. UnitTests do not require connection to external dependancies and provide testing on component level (white box testing). 
+# Tests & Code Coverage
+This project contains Unit tests as well as Integration tests. UnitTests do not require connection to external dependancies and provide testing on component level (white box testing) and Integration tests requires connection to external dependancies. 
 
-The unit test project uses Coverlet.msbuild for Code Coverage. Use the below powershell commands to copy the test results and code coverage results to the project root folder.
+The test projects uses Coverlet.msbuild for Code Coverage. Use the below powershell commands to copy the test results and code coverage results to the project root folder.
 
-```
-docker build --target test -t pokedex-test -f src\Pokedex.Api/Dockerfile .
-```
+## To run unit tests
 
 ```
-docker create --name unittestcontainer $(docker images --filter "label=testlayer=true" -q)
+docker build --target unittest -t pokedex-unit-test -f src\Pokedex.Api/Dockerfile .
+```
+
+```
+docker create --name unittestcontainer $(docker images --filter "label=unittestlayer=true" -q)
 ```
 ```
-docker cp unittestcontainer:/out/testresults ./testresults
+docker cp unittestcontainer:/out/testresults ./unittestresults
 ```
 ```
 docker stop unittestcontainer
 ```
 ```
 docker rm unittestcontainer
+```
+
+<br />
+
+## To run integration tests
+
+```
+docker build --target integrationtest -t pokedex-integration-test -f src\Pokedex.Api/Dockerfile .
+```
+
+```
+docker create --name integrationtestcontainer $(docker images --filter "label=integrationtestlayer=true" -q)
+```
+```
+docker cp integrationtestcontainer:/out/testresults ./integrationtestresults
+```
+```
+docker stop integrationtestcontainer
+```
+```
+docker rm integrationtestcontainer
 ```
 
 <br />
@@ -86,4 +109,18 @@ docker build --no-cache -t pokedex -f src\Pokedex.Api/Dockerfile
 
 # Things to consider for Production
 
-TBD
+Better test coverage
+
+API Versioning
+
+Caching
+
+Security headers for PEN testing
+
+Monitoring/Observability 
+
+API key, Authentication/Authorization considerations
+
+Rate Limiting
+
+Swagger Documentation with examples
